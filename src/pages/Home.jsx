@@ -1,6 +1,8 @@
 // src/pages/Home.jsx
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { auth } from "../firebase";
+import { signOut, onAuthStateChanged } from "firebase/auth";
 import GraphicIcon from "../assets/icons/graphic-design.svg";
 import VideoIcon from "../assets/icons/video-editing.svg";
 import WebIcon from "../assets/icons/web-design.svg";
@@ -8,6 +10,25 @@ import HeroImage from "../assets/images/hero-bg.jpeg";
 import Footer from "../components/Footer";
 
 export default function Home() {
+  const [user, setUser] = useState(null);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+      setUser(currentUser);
+    });
+    return () => unsubscribe();
+  }, []);
+
+  const handleLogout = async () => {
+    try {
+      await signOut(auth);
+      navigate("/login");
+    } catch (err) {
+      console.error("Error signing out:", err);
+    }
+  };
+
   const courses = [
     { title: "Graphic Design", description: "Master Photoshop, Illustrator, and all graphic tools.", icon: GraphicIcon },
     { title: "Video Editing", description: "Craft professional videos using editing & motion tools.", icon: VideoIcon },
@@ -36,11 +57,22 @@ export default function Home() {
                 See Courses
               </button>
             </Link>
-            <Link to="/login">
-              <button className="bg-blue-600 text-white font-semibold px-8 py-3 rounded-lg shadow-lg hover:bg-blue-700 transition duration-300">
-                Login
+
+            {/* Conditional rendering: show Login if user is not logged in, Logout if logged in */}
+            {!user ? (
+              <Link to="/login">
+                <button className="bg-blue-600 text-white font-semibold px-8 py-3 rounded-lg shadow-lg hover:bg-blue-700 transition duration-300">
+                  Login
+                </button>
+              </Link>
+            ) : (
+              <button
+                onClick={handleLogout}
+                className="bg-red-600 text-white font-semibold px-8 py-3 rounded-lg shadow-lg hover:bg-red-700 transition duration-300"
+              >
+                Logout
               </button>
-            </Link>
+            )}
           </div>
         </div>
 

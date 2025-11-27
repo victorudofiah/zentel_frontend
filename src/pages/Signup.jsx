@@ -1,6 +1,7 @@
-// src/pages/Signup.jsx
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { auth } from "../firebase";
+import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 
 export default function Signup() {
   const [formData, setFormData] = useState({
@@ -8,16 +9,38 @@ export default function Signup() {
     email: "",
     password: "",
   });
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
+  const navigate = useNavigate(); // to redirect after signup
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Signup data submitted:", formData);
-    alert("Signup successful!");
-    setFormData({ name: "", email: "", password: "" });
+    setError("");
+    setLoading(true);
+
+    try {
+      const { name, email, password } = formData;
+      
+      // Create user with email and password
+      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+      
+      // Update display name
+      await updateProfile(userCredential.user, { displayName: name });
+
+      alert("Signup successful!");
+      setFormData({ name: "", email: "", password: "" });
+
+      // Redirect to login page
+      navigate("/login");
+    } catch (err) {
+      setError(err.message);
+    }
+
+    setLoading(false);
   };
 
   return (
@@ -26,6 +49,8 @@ export default function Signup() {
         <h2 className="text-3xl font-bold text-center text-blue-600 mb-6">
           Create Your Account
         </h2>
+
+        {error && <p className="text-red-500 text-center mb-4">{error}</p>}
 
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
@@ -69,9 +94,10 @@ export default function Signup() {
 
           <button
             type="submit"
+            disabled={loading}
             className="w-full bg-blue-600 text-white font-bold py-3 rounded-xl shadow-lg hover:bg-blue-700 hover:scale-105 transform transition duration-300"
           >
-            Sign Up
+            {loading ? "Signing Up..." : "Sign Up"}
           </button>
         </form>
 

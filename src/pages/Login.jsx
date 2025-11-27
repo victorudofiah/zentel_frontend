@@ -1,14 +1,32 @@
+// src/pages/Login.jsx
 import React, { useState } from "react";
-import { Link } from "react-router-dom"; // ← Import Link
+import { Link, useNavigate } from "react-router-dom";
+import { auth } from "../firebase"; // import the auth instance
+import { signInWithEmailAndPassword } from "firebase/auth";
+
 
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
 
-  const handleSubmit = (e) => {
+  const navigate = useNavigate(); // for redirecting after login
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // TODO: Connect to backend login API
-    console.log("Login attempt:", email, password);
+    setError("");
+    setLoading(true);
+
+    try {
+      await signInWithEmailAndPassword(auth, email, password);
+      // Redirect to home or dashboard after login
+      navigate("/");
+    } catch (err) {
+      setError(err.message);
+    }
+
+    setLoading(false);
   };
 
   return (
@@ -17,6 +35,8 @@ export default function Login() {
         <h1 className="text-3xl font-bold text-center mb-6 text-blue-600">
           Zentel Insight Login
         </h1>
+
+        {error && <p className="text-red-500 text-center mb-4">{error}</p>}
 
         <form onSubmit={handleSubmit} className="space-y-6">
           <div>
@@ -45,15 +65,16 @@ export default function Login() {
 
           <button
             type="submit"
+            disabled={loading}
             className="w-full bg-blue-600 text-white font-bold py-3 rounded-xl shadow-lg hover:bg-blue-700 transition"
           >
-            Login
+            {loading ? "Logging in..." : "Login"}
           </button>
         </form>
 
         <p className="mt-6 text-center text-gray-600">
           Don't have an account?{" "}
-          <Link to="/signup" className="text-blue-600 hover:underline">
+          <Link to="/signup" className="text-blue-600 font-bold hover:underline">
             Register here
           </Link>
         </p>
