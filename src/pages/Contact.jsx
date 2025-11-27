@@ -2,34 +2,36 @@ import React from "react";
 
 export default function Contact() {
   return (
-    <div className="min-h-screen bg-gray-100 px-6 py-16">
-      <h1 className="text-4xl font-bold text-center text-blue-600 mb-10">
-        Contact Us
-      </h1>
+    <div className="bg-gray-100">
+      <section className="py-20 container mx-auto px-4 text-center">
+        <h1 className="text-4xl font-bold text-blue-600 mb-8">Contact Us</h1>
+        <p className="text-gray-700 mb-12 text-lg md:text-xl">
+          Have questions or want to enroll? Reach out to us!
+        </p>
 
-      <div className="max-w-lg mx-auto bg-white shadow-lg rounded-xl p-8">
-        <form className="space-y-4">
-          <input
-            type="text"
-            placeholder="Your Name"
-            className="w-full p-3 border rounded-lg"
-          />
-          <input
-            type="email"
-            placeholder="Your Email"
-            className="w-full p-3 border rounded-lg"
-          />
-          <textarea
-            rows="5"
-            placeholder="Message"
-            className="w-full p-3 border rounded-lg"
-          ></textarea>
-
-          <button className="w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 transition">
-            Send Message
-          </button>
-        </form>
-      </div>
+        <div className="max-w-2xl mx-auto bg-white p-10 rounded-2xl shadow-lg">
+          <form className="grid gap-6">
+            <input
+              type="text"
+              placeholder="Your Name"
+              className="border border-gray-300 p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+            />
+            <input
+              type="email"
+              placeholder="Your Email"
+              className="border border-gray-300 p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+            />
+            <textarea
+              placeholder="Your Message"
+              className="border border-gray-300 p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+              rows="5"
+            />
+            <button className="bg-blue-600 text-white font-bold px-6 py-3 rounded-xl shadow-lg hover:bg-blue-700 transition">
+              Send Message
+            </button>
+          </form>
+        </div>
+      </section>
     </div>
   );
 }

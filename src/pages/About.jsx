@@ -1,42 +1,48 @@
 import React from "react";
+import AboutImage from "../assets/images/hero-bg.jpeg"; // high-quality image
 
 export default function About() {
   return (
-    <div className="bg-gray-50 min-h-screen px-6 py-16">
-      <div className="max-w-4xl mx-auto">
-        <h1 className="text-4xl font-bold text-center mb-6 text-blue-600">
-          About Zentel Insight
-        </h1>
-
-        <p className="text-gray-700 text-lg leading-relaxed text-center mb-10">
-          Zentel Insight is an academy dedicated to helping people learn
-          digital skills such as Graphic Design, Video Editing, Web Design,
-          Affiliate Marketing, and more. Our goal is to empower young people
-          with digital knowledge that can change their lives.
-        </p>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-10">
-          <div className="bg-white shadow-lg p-6 rounded-xl">
-            <h3 className="text-xl font-bold mb-3 text-blue-500">
-              🎯 Our Mission
-            </h3>
-            <p className="text-gray-600">
-              To teach valuable digital skills that help young people build
-              profitable careers and discover new opportunities.
-            </p>
-          </div>
-
-          <div className="bg-white shadow-lg p-6 rounded-xl">
-            <h3 className="text-xl font-bold mb-3 text-blue-500">
-              ⭐ Our Vision
-            </h3>
-            <p className="text-gray-600">
-              To be Africa’s leading platform for digital education, reaching
-              millions with high–quality skill-based learning.
-            </p>
-          </div>
+    <div className="bg-gray-100">
+      {/* Hero Section */}
+      <section
+        className="relative h-96 flex items-center justify-center text-white"
+        style={{
+          backgroundImage: `url(${AboutImage})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+        }}
+      >
+        <div className="absolute inset-0 bg-black bg-opacity-50"></div>
+        <div className="relative z-10 text-center px-4">
+          <h1 className="text-4xl md:text-5xl font-extrabold mb-4 drop-shadow-lg">
+            About Zentel Insight
+          </h1>
+          <p className="text-lg md:text-xl drop-shadow">
+            Your trusted academy for mastering digital and creative skills.
+          </p>
         </div>
-      </div>
+      </section>
+
+      {/* Our Mission */}
+      <section className="py-20 container mx-auto px-4 text-center">
+        <h2 className="text-3xl font-bold text-blue-600 mb-6">Our Mission</h2>
+        <p className="text-gray-700 max-w-3xl mx-auto text-lg md:text-xl">
+          Zentel Insight exists to empower creatives and tech enthusiasts with
+          world-class skills in graphic design, video editing, web development, 
+          and more. We believe in hands-on learning and practical knowledge.
+        </p>
+      </section>
+
+      {/* Our Vision */}
+      <section className="py-20 bg-blue-50 text-center">
+        <h2 className="text-3xl font-bold text-blue-600 mb-6">Our Vision</h2>
+        <p className="text-gray-700 max-w-3xl mx-auto text-lg md:text-xl">
+          To be the leading creative academy, recognized for excellence in 
+          digital skills education, producing highly skilled professionals 
+          ready to thrive in the modern world.
+        </p>
+      </section>
     </div>
   );
 }
