@@ -4,37 +4,22 @@ import { Link } from "react-router-dom";
 import GraphicIcon from "../assets/icons/graphic-design.svg";
 import VideoIcon from "../assets/icons/video-editing.svg";
 import WebIcon from "../assets/icons/web-design.svg";
-import HeroImage from "../assets/images/hero-bg.jpeg"; // your hero image file
+import HeroImage from "../assets/images/hero-bg.jpeg";
+import Footer from "../components/Footer";
 
 export default function Home() {
   const courses = [
-    {
-      title: "Graphic Design",
-      description: "Master Photoshop, Illustrator, and all graphic tools.",
-      icon: GraphicIcon,
-    },
-    {
-      title: "Video Editing",
-      description: "Craft professional videos using editing & motion tools.",
-      icon: VideoIcon,
-    },
-    {
-      title: "Web Design",
-      description: "Build modern, responsive websites with React & JS.",
-      icon: WebIcon,
-    },
+    { title: "Graphic Design", description: "Master Photoshop, Illustrator, and all graphic tools.", icon: GraphicIcon },
+    { title: "Video Editing", description: "Craft professional videos using editing & motion tools.", icon: VideoIcon },
+    { title: "Web Design", description: "Build modern, responsive websites with React & JS.", icon: WebIcon },
   ];
 
   return (
     <div className="overflow-x-hidden">
-      {/* HERO SECTION */}
+      {/* HERO */}
       <section
         className="relative h-screen flex flex-col justify-center items-center text-center text-white"
-        style={{
-          backgroundImage: `url(${HeroImage})`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-        }}
+        style={{ backgroundImage: `url(${HeroImage})`, backgroundSize: "cover", backgroundPosition: "center" }}
       >
         <div className="absolute inset-0 bg-black bg-opacity-60"></div>
 
@@ -59,18 +44,15 @@ export default function Home() {
           </div>
         </div>
 
-        {/* Floating background elements */}
+        {/* Floating elements */}
         <div className="absolute top-10 left-5 w-12 h-12 bg-yellow-400 rounded-full opacity-30 animate-bounceSlow"></div>
         <div className="absolute bottom-28 right-8 w-16 h-16 bg-blue-500 rounded-full opacity-25 animate-bounceSlow delay-300"></div>
       </section>
 
-      {/* COURSES SECTION */}
+      {/* COURSES */}
       <section className="py-20 bg-gray-50">
         <div className="container mx-auto px-4 lg:px-8">
-          <h2 className="text-3xl md:text-4xl font-bold text-center text-blue-700 mb-12">
-            Our Courses
-          </h2>
-
+          <h2 className="text-3xl md:text-4xl font-bold text-center text-blue-700 mb-12">Our Courses</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
             {courses.map((course, idx) => (
               <Link to="/courses" key={idx}>
@@ -87,11 +69,9 @@ export default function Home() {
         </div>
       </section>
 
-      {/* CALL TO ACTION / FOOTER PRE‑SECTION */}
+      {/* CALL TO ACTION */}
       <section className="py-20 bg-blue-600 text-white text-center">
-        <h2 className="text-3xl md:text-4xl font-bold mb-4">
-          Ready to Start Learning?
-        </h2>
+        <h2 className="text-3xl md:text-4xl font-bold mb-4">Ready to Start Learning?</h2>
         <p className="max-w-2xl mx-auto mb-8 text-lg">
           Join hundreds of creatives already building their future with Zentel Insight.
         </p>
@@ -101,6 +81,9 @@ export default function Home() {
           </button>
         </Link>
       </section>
+
+      {/* FOOTER */}
+      <Footer />
     </div>
   );
 }

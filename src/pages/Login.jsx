@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom"; // ← Import Link
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -52,9 +53,9 @@ export default function Login() {
 
         <p className="mt-6 text-center text-gray-600">
           Don't have an account?{" "}
-          <a href="/register" className="text-blue-600 hover:underline">
+          <Link to="/signup" className="text-blue-600 hover:underline">
             Register here
-          </a>
+          </Link>
         </p>
       </div>
     </div>

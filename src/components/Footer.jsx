@@ -1,35 +1,45 @@
+// src/components/Footer.jsx
+import React from "react";
+import { Link } from "react-router-dom";
+import { FaFacebookF, FaTwitter, FaInstagram, FaLinkedinIn } from "react-icons/fa";
+
 export default function Footer() {
   return (
-    <footer className="bg-gray-900 text-white py-8 mt-20">
-      <div className="container mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-8">
-
+    <footer className="bg-blue-900 text-white py-12">
+      <div className="container mx-auto px-4 lg:px-8 grid grid-cols-1 md:grid-cols-3 gap-8">
+        {/* Branding */}
         <div>
-          <h2 className="text-xl font-bold mb-4">Zentel Insight</h2>
+          <h2 className="text-2xl font-bold mb-4">Zentel Insight</h2>
           <p className="text-gray-300">
-            Empowering Africa through digital skills — from design to tech.
+            Empowering creatives with top-tier digital skills. Learn, grow, and succeed.
           </p>
         </div>
 
+        {/* Quick Links */}
         <div>
-          <h3 className="font-bold mb-3">Quick Links</h3>
-          <ul className="space-y-2 text-gray-300">
-            <li><a href="/" className="hover:text-white">Home</a></li>
-            <li><a href="/courses" className="hover:text-white">Courses</a></li>
-            <li><a href="/about" className="hover:text-white">About</a></li>
-            <li><a href="/contact" className="hover:text-white">Contact</a></li>
+          <h3 className="text-xl font-semibold mb-4">Quick Links</h3>
+          <ul className="space-y-2">
+            <li><Link to="/" className="hover:text-yellow-400 transition">Home</Link></li>
+            <li><Link to="/about" className="hover:text-yellow-400 transition">About</Link></li>
+            <li><Link to="/courses" className="hover:text-yellow-400 transition">Courses</Link></li>
+            <li><Link to="/contact" className="hover:text-yellow-400 transition">Contact</Link></li>
           </ul>
         </div>
 
+        {/* Social Media */}
         <div>
-          <h3 className="font-bold mb-3">Contact</h3>
-          <p className="text-gray-300">Email: support@zentelinsight.com</p>
-          <p className="text-gray-300">WhatsApp: +234 813 000 0000</p>
+          <h3 className="text-xl font-semibold mb-4">Follow Us</h3>
+          <div className="flex space-x-4">
+            <a href="#" className="hover:text-yellow-400 transition"><FaFacebookF /></a>
+            <a href="#" className="hover:text-yellow-400 transition"><FaTwitter /></a>
+            <a href="#" className="hover:text-yellow-400 transition"><FaInstagram /></a>
+            <a href="#" className="hover:text-yellow-400 transition"><FaLinkedinIn /></a>
+          </div>
         </div>
-
       </div>
 
-      <div className="text-center text-gray-400 text-sm mt-8">
-        © {new Date().getFullYear()} Zentel Insight. All rights reserved.
+      <div className="mt-12 text-center text-gray-300">
+        &copy; {new Date().getFullYear()} Zentel Insight. All rights reserved.
       </div>
     </footer>
   );
